@@ -1,0 +1,96 @@
+{
+    "header": {
+        "summary": "Phát hiện cuộc gọi lừa đảo tài chính (Investment Scam) có tổ chức. Đối tượng sử dụng thuật ngữ 'lùa gà', 'FutureCoin' để dụ dỗ nạn nhân đầu tư số tiền lớn (500 triệu - 1 tỷ).",
+        "risk_level": "CRITICAL"
+    },
+    "intelligence_5w1h": {
+        "who": [
+            {
+                "name": "Hùng",
+                "role": "Kẻ lừa đảo (Scammer)",
+                "sentiment": "Aggressive/Manipulative"
+            },
+            {
+                "name": "Lan",
+                "role": "Nạn nhân (Victim)",
+                "sentiment": "Confused/Anxious"
+            }
+        ],
+        "what": [
+            "Mời gọi đầu tư ảo",
+            "Thúc ép chuyển tiền",
+            "Đe dọa bỏ lỡ cơ hội"
+        ],
+        "where": [
+            "Sàn FutureCoin (Website giả mạo)"
+        ],
+        "when": [
+            "Ngay lập tức (Urgency)"
+        ],
+        "why": [
+            "Chiếm đoạt tài sản",
+            "Lùa gà (Pump and Dump)"
+        ],
+        "how": [
+            "Sử dụng FOMO (Fear Of Missing Out)",
+            "Cam kết lợi nhuận 200%"
+        ]
+    },
+    "emotional_analysis": {
+        "timeline": [
+            {
+                "phase": "Start",
+                "emotion": "Friendly",
+                "note": "Hùng tạo thiện cảm"
+            },
+            {
+                "phase": "Middle",
+                "emotion": "Urgent/Pressure",
+                "note": "Hùng thúc ép Lan chuyển tiền ngay"
+            },
+            {
+                "phase": "End",
+                "emotion": "Threatening",
+                "note": "Hùng dọa cắt cơ hội nếu không chốt đơn"
+            }
+        ],
+        "anomalies": [
+            "Thay đổi thái độ đột ngột từ nhẹ nhàng sang gay gắt"
+        ]
+    },
+    "quantitative_data": {
+        "money": [
+            "500.000.000 VND",
+            "1.000.000.000 VND"
+        ],
+        "technical_specs": [
+            "Lãi suất 200%",
+            "Token FutureCoin"
+        ]
+    },
+    "sensitive_info": {
+        "secrets": [
+            "Dự án mật",
+            "Thông tin nội bộ"
+        ],
+        "pii_detected": [
+            {
+                "type": "BANK_ACCOUNT",
+                "value": "Chưa cung cấp"
+            },
+            {
+                "type": "PHONE",
+                "value": "Detected in metadata"
+            }
+        ]
+    },
+    "forensic_analysis": {
+        "sva_score": "High probability of Deception (Tiêu chí: Thiếu chi tiết cụ thể, Cấu trúc rập khuôn)",
+        "scan_result": "Sử dụng nhiều từ ngữ mệnh lệnh (Imperatives) và né tránh câu hỏi trực tiếp.",
+        "psychological_profile": "Đối tượng Hùng thể hiện đặc điểm của 'Kẻ thao túng' (Manipulator), sử dụng chiến thuật 'Khan hiếm giả tạo' (Artificial Scarcity)."
+    },
+    "final_conclusion": {
+        "verdict": "DECEPTIVE / HIGH RISK",
+        "investigator_note": "Cần ngăn chặn giao dịch ngay lập tức. Đây là mô hình Ponzi điển hình."
+    }
+}

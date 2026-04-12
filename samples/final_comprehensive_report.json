@@ -1,0 +1,35 @@
+{
+    "STRATEGIC_ASSESSMENT": {
+        "executive_briefing": "Cuộc hội thoại diễn ra giữa đối tượng Quyên (Khách hàng) và Đại diện cơ sở lưu trú (Lễ tân/Hệ thống). Vấn đề chính là việc thực hiện giao dịch đặt phòng khách sạn phục vụ chuyến công tác. Thông tin quan trọng bao gồm: (1) Thời gian thực hiện: Ngày mai; (2) Yêu cầu cụ thể: Đặt phòng có kèm dịch vụ bữa sáng; (3) Mục đích: Công tác (Business Trip). Không có nội dung mâu thuẫn hay tranh chấp, diễn biến cuộc gọi tập trung hoàn toàn vào việc xác nhận tiện ích hậu cần.",
+        "threat_matrix": {
+            "level": "BENIGN",
+            "classification": "Giao dịch dân sự",
+            "justification": "Nội dung minh bạch, không chứa từ khóa tội phạm hay hành vi đáng ngờ."
+        }
+    },
+    "TACTICAL_INTELLIGENCE": {
+        "entities_and_relationships": {
+            "description": "Cấu trúc quan hệ tham gia",
+            "data": [
+                {
+                    "name": "Quyên",
+                    "role": "Người khởi tạo yêu cầu (Requester)",
+                    "relationship_network": [
+                        "Khách hàng tiềm năng của khách sạn"
+                    ]
+                }
+            ]
+        },
+        "key_events_timeline": "Khách hàng đưa ra yêu cầu đặt phòng -> Xác định mốc thời gian (Ngày mai) -> Truy vấn tiện ích phụ (Bữa sáng)."
+    },
+    "BEHAVIORAL_PROFILING": {
+        "psychological_state": "Ổn định, Rõ ràng (Clear-headed).",
+        "shadow_profile": {
+            "life_patterns": "Thường xuyên đi công tác, có kế hoạch trước.",
+            "socio_economic_status": "Khả năng chi trả trung bình-khá."
+        }
+    },
+    "OPERATIONAL_RECOMMENDATIONS": [
+        "Tiếp tục lưu trữ dữ liệu để xây dựng hồ sơ thói quen di chuyển (Pattern of Life)."
+    ]
+}

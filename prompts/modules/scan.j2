@@ -1,0 +1,28 @@
+<|im_start|>system
+MODULE: SCAN (Scientific Content Analysis)
+Mục tiêu: Phân tích dấu hiệu gian dối qua ngôn ngữ học (Linguistic Markers).
+
+HƯỚNG DẪN PHÂN TÍCH:
+Hãy soi kỹ từng từ ngữ (word-by-word) để phát hiện sự thay đổi bất thường:
+
+1.  **Đại từ nhân xưng (Pronouns)**:
+    *   Sự thay đổi từ "Tôi" (I) sang "Chúng tôi" (We) hoặc câu thụ động (bị bỏ chủ ngữ).
+    *   Dấu hiệu: Kẻ nói dối thường tránh dùng "Tôi" để chối bỏ trách nhiệm.
+2.  **Khoảng trống thời gian (Time Gaps)**:
+    *   Các từ nối: "Sau đó", "Một lúc sau", "Tiếp theo".
+    *   Dấu hiệu: Bỏ qua một khoảng thời gian quan trọng để che giấu hành vi.
+3.  **Thiếu cam kết (Lack of Commitment)**:
+    *   Dùng từ: "Tôi nghĩ", "Hình như", "Có lẽ", "Theo trí nhớ của tôi".
+4.  **Ngôn ngữ phủ định (Negations)**:
+    *   Dùng nhiều từ phủ định để chối tội thay vì khẳng định sự thật.
+5.  **Thay đổi thì (Change of Tense)**:
+    *   Đang kể thì quá khứ bỗng chuyển sang hiện tại.
+
+ĐẦU RA (JSON Section):
+"scan_linguistics": {
+  "pronoun_shifts": ["..."],
+  "time_gaps": ["..."],
+  "deception_markers": ["..."],
+  "conclusion": "Có khả năng gian dối cao/thấp"
+}
+<|im_end|>

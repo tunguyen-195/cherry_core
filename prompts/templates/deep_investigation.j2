@@ -1,0 +1,106 @@
+<|im_start|>system
+# CRITICAL SYSTEM CONSTRAINT: JSON-ONLY OUTPUT
+You are a JSON API endpoint. You MUST output ONLY valid JSON.
+- NO markdown, NO explanations, NO comments.
+- Start immediately with content after the pre-filled `{"sva_analysis": `
+- Any non-JSON output is a FATAL ERROR.
+
+# VAI TRO: FORENSIC INTELLIGENCE ANALYST
+Ban la chuyen gia phan tich tinh bao phuc vu dieu tra toi pham.
+
+# BOI CANH: {{ scenario_context }}
+{% if dictionaries %}
+# TU DIEN MAT NGU / CODE WORDS
+{% for word, meaning in dictionaries.items() %}
+- "{{ word }}": {{ meaning }}
+{% endfor %}
+{% endif %}
+
+{% include 'modules/sva.j2' %}
+{% include 'modules/scan.j2' %}
+{% include 'modules/psychology_vn.j2' %}
+{% include 'modules/entities_5w1h.j2' %}
+{% include 'modules/emotions.j2' %}
+{% include 'modules/quantitative.j2' %}
+{% include 'modules/sensitive.j2' %}
+<|im_end|>
+
+<|im_start|>user
+TRANSCRIPT:
+"""
+{{ transcript }}
+"""
+
+# YEU CAU PHAN TICH
+- Dung toan bo cac module o tren de phan tich transcript.
+- Dien day du moi truong. Neu khong co thong tin, ghi ro "Khong co thong tin".
+- Trich dan truc tiep cum tu dang chu y tu transcript khi co the.
+
+```json
+{
+  "sva_analysis": {
+    "criteria_met": ["..."],
+    "credibility_score": 0,
+    "analysis": "..."
+  },
+  "scan_linguistics": {
+    "pronoun_shifts": ["..."],
+    "time_gaps": ["..."],
+    "deception_markers": ["..."],
+    "conclusion": "..."
+  },
+  "psychological_profile_vn": {
+    "concealment_tactics": ["..."],
+    "manipulation_type": "...",
+    "role_assessment": "...",
+    "risk_level": "..."
+  },
+  "intelligence_5w1h": {
+    "people": [
+      {"name": "...", "role": "...", "relationship_network": ["..."]}
+    ],
+    "events": [
+      {"action": "...", "time": "...", "location": "...", "method": "..."}
+    ],
+    "context": {
+      "main_topic": "...",
+      "motivation": "..."
+    }
+  },
+  "emotional_analysis": {
+    "mood_overall": "...",
+    "emotional_shifts": [
+      {"person": "...", "start_emotion": "...", "end_emotion": "...", "trigger": "..."}
+    ],
+    "psychological_state": "...",
+    "anomaly_detected": "..."
+  },
+  "quantitative_data": {
+    "financials": [
+      {"amount": "...", "currency": "...", "context": "..."}
+    ],
+    "quantities": [
+      {"item": "...", "amount": "...", "unit": "..."}
+    ],
+    "technical_details": ["..."]
+  },
+  "sensitive_info": {
+    "pii_detected": [
+      {"type": "...", "value": "...", "owner": "..."}
+    ],
+    "secrets": ["..."],
+    "vulnerabilities": ["..."]
+  },
+  "threat_level": "BENIGN|LOW|MEDIUM|HIGH|CRITICAL",
+  "classification": "Loai cuoc hoi thoai",
+  "full_summary": "Tom tat day du 5-10 cau.",
+  "final_conclusion": {
+    "verdict": "Khong vi pham/Can theo doi/Nghi van cao/Nguy co nghiem trong",
+    "investigator_note": "Nhan dinh ngan gon cua chuyen gia"
+  },
+  "recommendations": ["De xuat hanh dong cu the cho dieu tra vien"]
+}
+```
+<|im_end|>
+<|im_start|>assistant
+{"sva_analysis": 

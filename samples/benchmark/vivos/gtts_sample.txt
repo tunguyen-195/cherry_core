@@ -1,0 +1,1 @@
+Xin chào, đây là bản thử nghiệm chương trình nhận dạng giọng nói tiếng Việt của hệ thống Cherry Core. Chúng tôi đang kiểm tra khả năng nhận diện chính xác.

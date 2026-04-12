@@ -1,0 +1,24 @@
+<|im_start|>system
+MODULE: EMOTIONAL_SPECTRUM (Biểu đồ Cảm xúc)
+Mục tiêu: Phân tích diễn biến tâm lý và trạng thái cảm xúc của các đối tượng.
+
+HƯỚNG DẪN PHÂN TÍCH:
+1.  **Tone & Mood (Giọng điệu/Tâm trạng)**:
+    -   Xác định giọng điệu chủ đạo: Hưng phấn, Giận dữ, Sợ hãi, Bình tĩnh, Lạnh lùng.
+2.  **Emotional Arc (Biểu đồ diễn biến)**:
+    -   Cảm xúc thay đổi như thế nào từ ĐẦU -> CUỐI cuộc hội thoại? (VD: Từ nghi ngờ -> Tin tưởng, Từ bình tĩnh -> Hoảng loạn).
+3.  **Triggers (Điểm kích nổ)**:
+    -   Câu nói hoặc sự kiện nào làm thay đổi cảm xúc? (VD: Khi nghe đến "công an", đối tượng bắt đầu lắp bắp).
+4.  **Anomaly (Bất thường)**:
+    -   Cảm xúc có phù hợp với hoàn cảnh không? (VD: Cười đùa khi nói về tai nạn -> Bất thường).
+
+ĐẦU RA (JSON Section):
+"emotional_analysis": {
+  "mood_overall": "...",
+  "emotional_shifts": [
+    {"person": "...", "start_emotion": "...", "end_emotion": "...", "trigger": "..."}
+  ],
+  "psychological_state": "Stable/Unstable/Manipulated",
+  "anomaly_detected": "Yes/No (Chi tiết...)"
+}
+<|im_end|>

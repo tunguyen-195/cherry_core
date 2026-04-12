@@ -1,0 +1,303 @@
+{
+    "hospitality": {
+        "terms": [
+            "Khách sạn",
+            "Resort",
+            "Villa",
+            "Homestay",
+            "Nhà nghỉ",
+            "Căn hộ dịch vụ",
+            "Lễ tân",
+            "Buồng phòng",
+            "Dịch vụ phòng",
+            "Nhà hàng",
+            "Sảnh chờ",
+            "Check-in",
+            "Check-out",
+            "Đặt phòng",
+            "Huỷ phòng",
+            "Nhận phòng",
+            "Trả phòng",
+            "Buffet sáng",
+            "Bữa sáng miễn phí",
+            "Dịch vụ đưa đón",
+            "Hồ bơi",
+            "Gym",
+            "Spa"
+        ],
+        "room_types": [
+            "Standard",
+            "Superior",
+            "Deluxe",
+            "Suite",
+            "Executive Suite",
+            "Presidential Suite",
+            "Single Room",
+            "Double Room",
+            "Twin Room",
+            "Family Room",
+            "Connecting Room",
+            "King Bed",
+            "Queen Bed",
+            "Extra Bed"
+        ],
+        "hotel_names": [
+            "Marriott",
+            "InterContinental",
+            "Hyatt",
+            "Sheraton",
+            "Hilton",
+            "Pullman",
+            "Novotel",
+            "Vinpearl",
+            "Muong Thanh",
+            "Rex Hotel",
+            "Majestic",
+            "Caravelle",
+            "Metropole"
+        ]
+    },
+    "names": {
+        "surnames": [
+            "Nguyễn",
+            "Trần",
+            "Lê",
+            "Phạm",
+            "Hoàng",
+            "Huỳnh",
+            "Phan",
+            "Vũ",
+            "Võ",
+            "Đặng",
+            "Bùi",
+            "Đỗ",
+            "Hồ",
+            "Ngô",
+            "Dương",
+            "Lý"
+        ],
+        "middle_names": [
+            "Thị",
+            "Văn",
+            "Công",
+            "Minh",
+            "Thu",
+            "Ngọc",
+            "Thanh",
+            "Đức"
+        ],
+        "given_names": [
+            "An",
+            "Anh",
+            "Bảo",
+            "Bình",
+            "Cường",
+            "Dũng",
+            "Đức",
+            "Hải",
+            "Hiếu",
+            "Hoàng",
+            "Hùng",
+            "Huy",
+            "Khánh",
+            "Long",
+            "Minh",
+            "Nam",
+            "Nghĩa",
+            "Phong",
+            "Phúc",
+            "Quân",
+            "Quang",
+            "Sơn",
+            "Thắng",
+            "Thành",
+            "Thiên",
+            "Thịnh",
+            "Trung",
+            "Tuấn",
+            "Tùng",
+            "Việt",
+            "Vinh",
+            "Ánh",
+            "Bích",
+            "Châu",
+            "Chi",
+            "Diệp",
+            "Dung",
+            "Duyên",
+            "Giang",
+            "Hà",
+            "Hạnh",
+            "Hân",
+            "Hiền",
+            "Hoa",
+            "Hương",
+            "Huyền",
+            "Khuyên",
+            "Kiều",
+            "Lan",
+            "Linh",
+            "Loan",
+            "Ly",
+            "Mai",
+            "My",
+            "Nga",
+            "Ngân",
+            "Ngọc",
+            "Nhung",
+            "Oanh",
+            "Phương",
+            "Quyên",
+            "Quỳnh",
+            "Thảo",
+            "Thúy",
+            "Thủy",
+            "Trang",
+            "Trâm",
+            "Trinh",
+            "Tú",
+            "Uyên",
+            "Vân",
+            "Vi",
+            "Xuân",
+            "Yến"
+        ]
+    },
+    "common_errors": [
+        {
+            "incorrect": "xương hô",
+            "correct": "xưng hô",
+            "context": "greeting"
+        },
+        {
+            "incorrect": "xin ký",
+            "correct": "xin kính",
+            "context": "formal"
+        },
+        {
+            "incorrect": "xá phòng",
+            "correct": "giá phòng",
+            "context": "hotel"
+        },
+        {
+            "incorrect": "đi lắc",
+            "correct": "Deluxe",
+            "context": "hotel"
+        },
+        {
+            "incorrect": "đi lận",
+            "correct": "Deluxe",
+            "context": "hotel"
+        },
+        {
+            "incorrect": "vòng x kế tiếp",
+            "correct": "phòng Executive",
+            "context": "hotel"
+        },
+        {
+            "incorrect": "x kế tiếp",
+            "correct": "Executive",
+            "context": "hotel"
+        },
+        {
+            "incorrect": "G.W.Mirrors",
+            "correct": "JW Marriott",
+            "context": "hotel_name"
+        },
+        {
+            "incorrect": "G.W. Marriott",
+            "correct": "JW Marriott",
+            "context": "hotel_name"
+        },
+        {
+            "incorrect": "xkz",
+            "correct": "Executive",
+            "context": "hotel"
+        },
+        {
+            "incorrect": "chị quên",
+            "correct": "chị Quyên",
+            "context": "name"
+        },
+        {
+            "incorrect": "điều trú",
+            "correct": "lưu trú",
+            "context": "hotel"
+        },
+        {
+            "incorrect": "yêu đãi",
+            "correct": "ưu đãi",
+            "context": "promotion"
+        },
+        {
+            "incorrect": "căn cướp",
+            "correct": "căn cước",
+            "context": "id"
+        },
+        {
+            "incorrect": "căn cứ công dân",
+            "correct": "căn cước công dân",
+            "context": "id"
+        },
+        {
+            "incorrect": "nghiêm tiếp",
+            "correct": "niêm yết",
+            "context": "price"
+        },
+        {
+            "incorrect": "quỷ trả",
+            "correct": "quy trả",
+            "context": "policy"
+        },
+        {
+            "incorrect": "đặt cầu",
+            "correct": "đặt cọc",
+            "context": "payment"
+        },
+        {
+            "incorrect": "đặt cầu trước",
+            "correct": "đặt cọc trước",
+            "context": "payment"
+        },
+        {
+            "incorrect": "cuộc quả",
+            "correct": "cuộc gọi",
+            "context": "phone"
+        },
+        {
+            "incorrect": "vô lòng",
+            "correct": "vui lòng",
+            "context": "polite"
+        },
+        {
+            "incorrect": "Vư lưu ý",
+            "correct": "Vui lưu ý",
+            "context": "polite"
+        },
+        {
+            "incorrect": "một đêm trồng",
+            "correct": "một đêm đầu",
+            "context": "hotel"
+        },
+        {
+            "incorrect": "sức phòng",
+            "correct": "giữ phòng",
+            "context": "hotel"
+        },
+        {
+            "incorrect": "kế định",
+            "correct": "quy định",
+            "context": "policy"
+        },
+        {
+            "incorrect": "do kế định",
+            "correct": "theo quy định",
+            "context": "policy"
+        },
+        {
+            "incorrect": "Phận Lễ Tân",
+            "correct": "Bộ phận Lễ Tân",
+            "context": "hotel"
+        }
+    ]
+}

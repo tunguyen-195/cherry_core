@@ -1,0 +1,19 @@
+{
+  "threat_level": "BENIGN",
+  "classification": "Đặt phòng khách sạn",
+  "executive_summary": "Người dùng đang đặt một căn phòng tại khách sạn XYZ cho chuyến công tác của họ.",
+  "key_entities": {
+    "people": [
+      "Người dùng"
+    ],
+    "locations": [
+      "Khách sạn XYZ"
+    ]
+  },
+  "timeline": "1. Người dùng gọi đến bộ phận lễ tân để hỏi về tình trạng còn phòng trống. 2. Lễ tân kiểm tra và thông báo cho người dùng rằng có một căn phòng trống.",
+  "behavioral_analysis": "Người dùng bình tĩnh, lịch sự trong suốt cuộc trò chuyện. Lễ tân chuyên nghiệp và hữu ích.",
+  "intent_analysis": "Mục đích chính của cuộc hội thoại là đặt một căn phòng tại khách sạn XYZ cho chuyến công tác sắp tới của người dùng.",
+  "recommendations": [
+    "Khuyến nghị 1: Xác nhận tình trạng còn phòng trống với lễ tân trước khi đến. Khuyến nghị 2: Kiểm tra các tiện nghi và dịch vụ có sẵn trong căn phòng."
+  ]
+}

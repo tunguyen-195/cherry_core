@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page_title }}</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <main class="app-shell">
+    <header class="masthead panel">
+      <div class="masthead-main">
+        <div class="brand-block">
+          <p class="eyebrow">Operations Console</p>
+          <h1>Hệ thống trinh sát âm thanh</h1>
+          <p class="subtitle">Trung tâm tác nghiệp cho phiên âm, làm sạch transcript, tách người nói và tổng hợp nhận định điều tra trên hạ tầng local. Mọi bước xử lý đều có thể bật riêng để benchmark hoặc truy vết.</p>
+        </div>
+
+          <div class="masthead-side">
+            <div class="command-chips">
+              <span class="command-chip">Local-first</span>
+            <span class="command-chip">GPU ưu tiên</span>
+            <span class="command-chip">Kích hoạt theo bước</span>
+            </div>
+
+          <article class="mission-card">
+            <span class="metric-label">Chu trình lõi</span>
+            <strong>Thu thập audio → Phiên âm → Làm sạch → Người nói → Nhận định</strong>
+            <small>Thiết kế ưu tiên thao tác nhanh, quan sát tiến trình rõ ràng và giữ toàn bộ kết quả trên cùng một màn hình làm việc.</small>
+          </article>
+        </div>
+      </div>
+    </header>
+
+    <section class="workspace-grid">
+      <aside class="control-stack">
+        <section class="panel panel-form">
+          <div class="panel-header">
+            <div>
+              <h2>Thiết lập hồ sơ</h2>
+              <p class="panel-copy">Chọn nguồn audio, engine và các lớp xử lý cần dùng cho lượt chạy hiện tại.</p>
+            </div>
+          </div>
+
+          <form id="jobForm" class="stack-form">
+            <section class="form-section">
+              <div class="section-head">
+                <h3>Nguồn dữ liệu</h3>
+                <p>Nạp file và xác định thiết bị xử lý cho một hồ sơ mới.</p>
+              </div>
+
+              <label class="field field-full">
+                <span>Audio đầu vào</span>
+                <input id="audioFile" name="file" type="file" accept="audio/*,video/*" required>
+                <small class="hint">Hỗ trợ audio/video phổ biến. Hệ thống tự chuẩn hóa về mono 16kHz.</small>
+              </label>
+
+              <div class="inline-grid">
+                <label class="field">
+                  <span>ASR engine</span>
+                  <select id="asrEngine" name="asr_engine">
+                    <option value="phowhisper">PhoWhisper</option>
+                    <option value="whisper-v2">Whisper V2</option>
+                    <option value="whisperx">WhisperX</option>
+                  </select>
+                  <small class="hint">PhoWhisper ưu tiên tiếng Việt. Whisper V2 phù hợp khi cần benchmark lớp ổn định mốc.</small>
+                </label>
+
+                <label class="field">
+                  <span>Thiết bị</span>
+                  <select id="device" name="device">
+                    <option value="cpu">CPU</option>
+                    <option value="cuda" selected>GPU</option>
+                  </select>
+                  <small class="hint">Mặc định ưu tiên GPU. Nếu máy không có CUDA hoặc cần né tải nặng, hệ thống có thể chuyển sang CPU.</small>
+                </label>
+              </div>
+            </section>
+
+            <section class="form-section">
+              <div class="section-head">
+                <h3>Làm sạch và hiệu chỉnh</h3>
+                <p>Bật từng lớp khi thật sự cần để dễ so sánh chất lượng giữa các lượt chạy.</p>
+              </div>
+
+              <div class="option-grid compact-grid">
+                <label class="check feature-toggle compact-toggle">
+                  <input id="applyVad" name="apply_vad" type="checkbox" checked>
+                  <span>
+                    <strong>Lọc khoảng lặng</strong>
+                    <small>Cắt bớt nền rỗng trước khi phiên âm.</small>
+                  </span>
+                </label>
+
+                <label class="check feature-toggle compact-toggle">
+                  <input id="applyHallucinationFilter" name="apply_hallucination_filter" type="checkbox">
+                  <span>
+                    <strong>Lọc lặp/nhiễu</strong>
+                    <small>Giảm lặp từ và đoạn méo cơ bản.</small>
+                  </span>
+                </label>
+
+                <label class="check feature-toggle compact-toggle">
+                  <input id="applyDomainPostprocess" name="apply_domain_postprocess" type="checkbox">
+                  <span>
+                    <strong>Chuẩn hóa miền</strong>
+                    <small>Điều chỉnh cách diễn đạt theo miền nghiệp vụ.</small>
+                  </span>
+                </label>
+
+                <label class="check feature-toggle compact-toggle">
+                  <input id="applyProtonx" name="apply_protonx" type="checkbox">
+                  <span>
+                    <strong>Giảm ảo giác ngữ cảnh</strong>
+                    <small>Giữ transcript nhất quán hơn khi tín hiệu đứt hoặc nhiễu.</small>
+                  </span>
+                </label>
+
+                <label class="check feature-toggle compact-toggle">
+                  <input id="applyLlmCorrection" name="apply_llm_correction" type="checkbox">
+                  <span>
+                    <strong>Chuẩn hóa ngữ nghĩa AI</strong>
+                    <small>Hiệu chỉnh cục bộ bằng model local chạy offline.</small>
+                  </span>
+                </label>
+              </div>
+
+              <label class="field">
+                <span>Miền hậu xử lý</span>
+                <select id="domain" name="domain">
+                  <option value="general" selected>General</option>
+                  <option value="hotel">Hotel</option>
+                </select>
+              </label>
+            </section>
+
+            <section class="form-section">
+              <div class="section-head">
+                <h3>Người nói và nhận định</h3>
+                <p>Chọn kịch bản phân tích và mức độ khai thác thông tin từ hội thoại.</p>
+              </div>
+
+              <div class="inline-grid">
+                <label class="field">
+                  <span>Kịch bản phân tích</span>
+                  <select id="analysisScenario" name="analysis_scenario">
+                    {% for scenario in scenarios %}
+                    <option value="{{ scenario.value }}" {% if scenario.value == "general_intelligence" %}selected{% endif %}>{{ scenario.label }}</option>
+                    {% endfor %}
+                  </select>
+                  <small id="scenarioHint" class="hint">Bản tóm tắt sẽ ưu tiên logic suy diễn phù hợp với kịch bản đang chọn.</small>
+                </label>
+
+                <label class="field">
+                  <span>Speaker mode</span>
+                  <select id="speakerMode" name="speaker_mode">
+                    <option value="off" selected>Tắt</option>
+                    <option value="speechbrain">SpeechBrain (offline)</option>
+                  </select>
+                  <small class="hint">Bật khi cần tách lời thoại trước khi tổng hợp nhận định.</small>
+                </label>
+              </div>
+
+              <label class="check feature-toggle compact-toggle">
+                <input id="speakerRefine" name="speaker_refine" type="checkbox">
+                <span>
+                  <strong>Suy luận vai trò người nói</strong>
+                  <small>Gợi ý vai trò hoặc vị trí giao tiếp sau bước diarization.</small>
+                </span>
+              </label>
+            </section>
+
+            <div class="field-full actions actions-split">
+              <div class="action-copy">
+                <strong>Khuyến nghị:</strong>
+                <span>Chạy pipeline nền trước, sau đó kích hoạt thêm từng lớp để đánh giá tác động lên chất lượng.</span>
+              </div>
+              <button id="submitButton" type="submit">Tạo hồ sơ xử lý</button>
+            </div>
+          </form>
+        </section>
+
+        <section class="panel ops-panel">
+          <div class="panel-header">
+            <div>
+              <h2>Runtime và pipeline</h2>
+              <p class="panel-copy">Theo dõi tình trạng mô-đun local, tiến độ job và các bước có thể chạy bổ sung.</p>
+            </div>
+          </div>
+
+          <div class="ops-subsection">
+            <div class="section-head compact-head">
+              <h3>Mô-đun cục bộ</h3>
+              <p>Inventory local đang sẵn sàng.</p>
+            </div>
+            <div id="modelStatus" class="status-list"></div>
+          </div>
+
+          <div class="ops-subsection">
+            <div class="section-head compact-head">
+              <h3>Pipeline</h3>
+              <p>Job cơ sở chạy trước, các step phụ được bật riêng khi cần.</p>
+            </div>
+
+            <div class="roadmap compact-roadmap">
+              <article class="roadmap-step">
+                <strong>1. Base</strong>
+                <span>Chuẩn hóa audio, VAD và ASR nền.</span>
+              </article>
+              <article class="roadmap-step">
+                <strong>2. Cleanup</strong>
+                <span>Ổn định mốc, giảm ảo giác, hiệu chỉnh.</span>
+              </article>
+              <article class="roadmap-step">
+                <strong>3. Speaker</strong>
+                <span>Tách người nói và suy luận vai trò.</span>
+              </article>
+              <article class="roadmap-step">
+                <strong>4. Intel</strong>
+                <span>Brief, timeline và cờ cảnh báo.</span>
+              </article>
+            </div>
+
+            <div id="jobMeta" class="job-meta">
+              <div><strong>Job:</strong> <span id="jobId">Chưa có</span></div>
+              <div><strong>Trạng thái:</strong> <span id="jobState">idle</span></div>
+              <div><strong>Stage:</strong> <span id="jobStage">-</span></div>
+            </div>
+            <div class="progress">
+              <div id="progressBar" class="progress-bar" style="width: 0%;"></div>
+            </div>
+            <p id="jobError" class="error-text"></p>
+
+            <div class="step-actions">
+              <button class="secondary" data-step="stable_ts" disabled>Ổn định mốc</button>
+              <button class="secondary" data-step="protonx" disabled>Giảm ảo giác</button>
+              <button class="secondary" data-step="llm_correction" disabled>Chuẩn hóa AI</button>
+              <button class="secondary" data-step="diarization" disabled>Tách người nói</button>
+              <button class="secondary" data-step="speaker_refine" disabled>Suy luận vai trò</button>
+              <button class="secondary accent" data-step="intel_summary" disabled>Tóm tắt trinh sát</button>
+            </div>
+          </div>
+        </section>
+      </aside>
+
+      <section class="result-stack">
+        <section class="panel panel-results">
+          <div class="panel-header">
+            <div>
+              <h2>Workspace kết quả</h2>
+              <p class="panel-copy">So sánh transcript theo từng lớp xử lý và đọc nhanh dashboard nhận định ngay trên cùng một không gian.</p>
+            </div>
+          </div>
+
+          <div class="tabs">
+            <button class="tab active" data-tab="raw">Raw</button>
+            <button class="tab" data-tab="stable">Ổn định mốc</button>
+            <button class="tab" data-tab="filtered">Lọc cơ bản</button>
+            <button class="tab" data-tab="corrected">Chuẩn hóa</button>
+            <button class="tab" data-tab="intel">Tóm tắt trinh sát</button>
+            <button class="tab" data-tab="speaker">Người nói</button>
+            <button class="tab" data-tab="artifacts">Tải xuống</button>
+          </div>
+
+          <div id="tab-raw" class="tab-panel active"><pre id="rawText"></pre></div>
+          <div id="tab-stable" class="tab-panel"><pre id="stableText"></pre></div>
+          <div id="tab-filtered" class="tab-panel"><pre id="filteredText"></pre></div>
+          <div id="tab-corrected" class="tab-panel"><pre id="correctedText"></pre></div>
+          <div id="tab-speaker" class="tab-panel"><pre id="speakerText"></pre></div>
+          <div id="tab-artifacts" class="tab-panel">
+            <div id="downloadLinks" class="download-list"></div>
+          </div>
+
+          <div id="tab-intel" class="tab-panel">
+            <div id="intelEmpty" class="empty-state">Chưa có bản brief trinh sát. Hãy chạy bước "Tóm tắt trinh sát" sau khi transcript đã đủ sạch.</div>
+            <div id="intelPanel" class="intel-panel hidden">
+              <div class="intel-topline">
+                <div class="intel-badges">
+                  <span id="intelScenarioBadge" class="intel-badge">Kịch bản</span>
+                  <span id="intelThreatBadge" class="intel-badge intel-badge-threat">Threat</span>
+                  <span id="intelClassBadge" class="intel-badge">Phân loại</span>
+                </div>
+                <div id="intelMetrics" class="intel-metrics"></div>
+              </div>
+
+              <div class="intel-grid">
+                <article class="intel-card intel-card-brief">
+                  <h3>Brief điều tra</h3>
+                  <p id="intelBriefing"></p>
+                </article>
+                <article class="intel-card intel-card-conclusion">
+                  <h3>Kết luận nhanh</h3>
+                  <p id="intelConclusion"></p>
+                </article>
+              </div>
+
+              <article class="intel-card intel-card-full">
+                <div class="card-header-inline">
+                  <h3>Cờ cảnh báo</h3>
+                  <span class="hint">Đọc nhanh trước khi đi vào chi tiết.</span>
+                </div>
+                <div id="intelRiskFlags" class="risk-flag-list"></div>
+              </article>
+
+              <div id="intelCardGrid" class="intel-card-grid"></div>
+
+              <article class="intel-card intel-card-full">
+                <div class="card-header-inline">
+                  <h3>Timeline hành động</h3>
+                  <span class="hint">Mốc dựng từ báo cáo cấu trúc và heuristic offline.</span>
+                </div>
+                <div id="intelTimeline" class="timeline-list"></div>
+              </article>
+
+              <article class="intel-card intel-card-full">
+                <h3>Khuyến nghị tác nghiệp</h3>
+                <ul id="intelRecommendations" class="intel-list"></ul>
+              </article>
+
+              <article class="intel-card intel-card-full">
+                <h3>Chi tiết tóm tắt</h3>
+                <pre id="intelSummaryText"></pre>
+              </article>
+            </div>
+          </div>
+        </section>
+      </section>
+    </section>
+  </main>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

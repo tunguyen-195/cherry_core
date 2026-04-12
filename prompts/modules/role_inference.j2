@@ -1,0 +1,26 @@
+[INSTRUCTION]
+Analyze the following conversation transcript and infer the likely ROLE, RELATIONSHIP, or IDENTITY of each speaker based on the context.
+
+[CONTEXT TYPES]
+- **Business**: Receptionist/Customer, Manager/Employee, Interviewer/Candidate.
+- **Personal**: Friend/Friend, Husband/Wife, Parent/Child.
+- **Legal/Forensic**: Police/Suspect, Judge/Witness.
+- **Casual**: Strangers, Acquaintances.
+
+[TRANSCRIPT]
+{{ transcript_text }}
+
+[OUTPUT FORMAT]
+Return a JSON object mapping speaker IDs to their inferred roles.
+Example:
+{
+  "SPEAKER_1": "Doctor",
+  "SPEAKER_2": "Patient"
+}
+
+[CONSTRAINT]
+- **Infer from context**: Do not guess if unsure, use "Speaker".
+- **Language**: Use Vietnamese (e.g., "Bác sĩ", "Bệnh nhân", "Mẹ", "Con").
+- **Concise**: 1-3 words per role.
+- Only output the valid JSON string.
+[/INSTRUCTION]

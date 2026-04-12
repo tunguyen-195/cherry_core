@@ -1,0 +1,53 @@
+{
+    "header": {
+        "intelligence_narrative": "Cuộc hội thoại ghi nhận nỗ lực thao túng tâm lý điển hình (Gaslighting/FOMO) của đối tượng Hùng nhằm chiếm đoạt tài sản của bà Lan. Đối tượng đã vẽ ra một kịch bản đầu tư lợi nhuận khủng (200%) trên sàn ảo 'FutureCoin' và tạo áp lực thời gian giả tạo ('cơ hội cuối cùng') để nạn nhân không kịp suy nghĩ. Bà Lan thể hiện sự dao động nhưng có xu hướng phục tùng do tin tưởng vào mối quan hệ 'anh em kết nghĩa' mà Hùng vun đắp. Đây là dấu hiệu rõ ràng của mô hình lừa đảo 'Pig Butchering' (Mổ lợn) giai đoạn chốt hạ.",
+        "risk_level": "CRITICAL"
+    },
+    "intelligence_5w1h": {
+        "people": [
+            {
+                "name": "Hùng",
+                "role": "Kẻ lừa đảo (Scammer)",
+                "relationship_network": [
+                    "Tự xưng là 'Em kết nghĩa' của Lan (Mối quan hệ xây dựng để tạo lòng tin)",
+                    "Thành viên cấp cao của nhóm 'FutureCoin' (Tự phong)"
+                ]
+            },
+            {
+                "name": "Lan",
+                "role": "Nạn nhân (Victim)",
+                "relationship_network": [
+                    "Được Hùng gọi là 'Chị gái'",
+                    "Đang có tiền nhàn rỗi (Mục tiêu khai thác)"
+                ]
+            }
+        ],
+        "context": {
+            "main_topic": "Thúc ép chuyển tiền đầu tư ảo",
+            "motivation": "Chiếm đoạt 1 tỷ đồng"
+        }
+    },
+    "emotional_analysis": {
+        "timeline": [
+            {
+                "phase": "Mở đầu",
+                "emotion": "Thân tình, Quan tâm giả tạo",
+                "note": "Hùng hỏi han sức khỏe để làm mềm lòng"
+            },
+            {
+                "phase": "Cao trào",
+                "emotion": "Quyết liệt, Dồn dập",
+                "note": "Sử dụng từ ngữ mạnh: 'Ngay bây giờ', 'Mất cơ hội'"
+            },
+            {
+                "phase": "Kết thúc",
+                "emotion": "Cam kết, Đảm bảo",
+                "note": "Hùng hứa hẹn sinh lời để chốt giao dịch"
+            }
+        ]
+    },
+    "final_conclusion": {
+        "verdict": "DECEPTIVE / HIGH RISK",
+        "investigator_note": "Cần can thiệp ngay. Mối quan hệ 'chị em kết nghĩa' là đòn bẩy tâm lý chính để thực hiện hành vi lừa đảo."
+    }
+}

@@ -1,0 +1,70 @@
+{
+    "header": {
+        "summary": "Đối tượng Quyên liên hệ đặt phòng khách sạn. Mục đích: Công tác (Business). Yêu cầu bổ sung: Bữa sáng.",
+        "risk_level": "LOW (Shadow Profiling Active)"
+    },
+    "intelligence_5w1h": {
+        "who": [
+            {
+                "name": "Quyên",
+                "role": "Khách hàng",
+                "sentiment": "Neutral/Professional"
+            }
+        ],
+        "what": [
+            "Đặt phòng",
+            "Yêu cầu dịch vụ ăn uống"
+        ],
+        "where": [
+            "Khách sạn (Điểm đến chưa xác định)"
+        ],
+        "when": [
+            "Sắp tới (Future Plan)"
+        ],
+        "why": [
+            "Đi công tác (Work-related)"
+        ],
+        "how": [
+            "Gọi điện thoại/Hội thoại trực tiếp"
+        ]
+    },
+    "emotional_analysis": {
+        "timeline": [
+            {
+                "phase": "Request",
+                "emotion": "Calm",
+                "note": "Giọng điệu bình thản, tập trung vào mục đích."
+            }
+        ],
+        "anomalies": []
+    },
+    "quantitative_data": {
+        "money": [],
+        "technical_specs": [
+            "01 phòng",
+            "Meal: Breakfast"
+        ]
+    },
+    "sensitive_info": {
+        "secrets": [],
+        "pii_detected": []
+    },
+    "shadow_profile": {
+        "life_patterns": {
+            "travel": "Thường xuyên đi công tác (Business Traveler)",
+            "diet": "Quan tâm đến bữa sáng (Health/Convenience conscious)"
+        },
+        "social_graph": {
+            "connections": [],
+            "status": "Solo Traveler (trong chuyến đi này)"
+        },
+        "financial_status": {
+            "spending_power": "Medium/High (Sử dụng dịch vụ khách sạn có bữa sáng)",
+            "debt": "None detected"
+        }
+    },
+    "final_conclusion": {
+        "verdict": "TRUTHFUL / NORMAL",
+        "investigator_note": "Không phát hiện dấu hiệu tội phạm. Đối tượng là nhân viên văn phòng/doanh nhân đi công tác. Tiếp tục giám sát thụ động lịch trình di chuyển."
+    }
+}

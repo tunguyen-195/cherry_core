@@ -1,0 +1,571 @@
+{
+    "_metadata": {
+        "version": "2.0",
+        "description": "Vietnamese phonetic error dictionary - Generalized patterns for ASR post-processing",
+        "source": "Viện Ngôn ngữ học Việt Nam, common Vietnamese spelling errors research",
+        "note": "Organized by linguistic error CATEGORY, not specific use cases",
+        "total_patterns": "100+"
+    },
+    "phonetic_categories": {
+        "s_x_confusion": {
+            "description": "S và X thường bị nhầm lẫn. S không đi với vần oa, oă, oe, uê.",
+            "pairs": [
+                {
+                    "incorrect": "công xuất",
+                    "correct": "công suất"
+                },
+                {
+                    "incorrect": "xạc điện",
+                    "correct": "sạc điện"
+                },
+                {
+                    "incorrect": "sử lý",
+                    "correct": "xử lý"
+                },
+                {
+                    "incorrect": "sạch xẽ",
+                    "correct": "sạch sẽ"
+                },
+                {
+                    "incorrect": "xoay sở",
+                    "correct": "xoay xở"
+                },
+                {
+                    "incorrect": "xay dựng",
+                    "correct": "xây dựng"
+                },
+                {
+                    "incorrect": "sình thành",
+                    "correct": "sinh thành"
+                },
+                {
+                    "incorrect": "xao nhãng",
+                    "correct": "sao nhãng"
+                },
+                {
+                    "incorrect": "xi lanh",
+                    "correct": "xy lanh"
+                },
+                {
+                    "incorrect": "xương hô",
+                    "correct": "xưng hô"
+                }
+            ]
+        },
+        "d_gi_r_confusion": {
+            "description": "D, Gi, R hay bị nhầm lẫn do phát âm vùng miền khác nhau.",
+            "pairs": [
+                {
+                    "incorrect": "giành dụm",
+                    "correct": "dành dụm"
+                },
+                {
+                    "incorrect": "tranh dành",
+                    "correct": "tranh giành"
+                },
+                {
+                    "incorrect": "dấu giếm",
+                    "correct": "giấu giếm"
+                },
+                {
+                    "incorrect": "giận giữ",
+                    "correct": "giận dữ"
+                },
+                {
+                    "incorrect": "dáo riết",
+                    "correct": "ráo riết"
+                },
+                {
+                    "incorrect": "da dẻ",
+                    "correct": "da dẻ"
+                },
+                {
+                    "incorrect": "reo lệnh",
+                    "correct": "gieo lệnh"
+                },
+                {
+                    "incorrect": "dầm mưa",
+                    "correct": "dầm mưa"
+                },
+                {
+                    "incorrect": "rành rõi",
+                    "correct": "rành rẽ"
+                },
+                {
+                    "incorrect": "rãi đều",
+                    "correct": "rải đều"
+                }
+            ]
+        },
+        "l_n_confusion": {
+            "description": "L và N nhầm lẫn phổ biến ở một số vùng. L đứng trước âm đệm, N thì không.",
+            "pairs": [
+                {
+                    "incorrect": "nao động",
+                    "correct": "lao động"
+                },
+                {
+                    "incorrect": "lo nắng",
+                    "correct": "lo lắng"
+                },
+                {
+                    "incorrect": "nề nối",
+                    "correct": "lề lối"
+                },
+                {
+                    "incorrect": "nưu lượng",
+                    "correct": "lưu lượng"
+                },
+                {
+                    "incorrect": "no ngại",
+                    "correct": "lo ngại"
+                },
+                {
+                    "incorrect": "nạnh lùng",
+                    "correct": "lạnh lùng"
+                },
+                {
+                    "incorrect": "nay láy",
+                    "correct": "lay láy"
+                },
+                {
+                    "incorrect": "nạc quan",
+                    "correct": "lạc quan"
+                },
+                {
+                    "incorrect": "nỗ lực",
+                    "correct": "nỗ lực"
+                },
+                {
+                    "incorrect": "lếu náo",
+                    "correct": "liếu láo"
+                }
+            ]
+        },
+        "hoi_nga_diacritics": {
+            "description": "Dấu hỏi (?) và dấu ngã (~) thường bị nhầm lẫn.",
+            "pairs": [
+                {
+                    "incorrect": "chín mùi",
+                    "correct": "chín muồi"
+                },
+                {
+                    "incorrect": "chuẩn đoán",
+                    "correct": "chẩn đoán"
+                },
+                {
+                    "incorrect": "khảng khái",
+                    "correct": "khẳng khái"
+                },
+                {
+                    "incorrect": "ngang tàn",
+                    "correct": "ngang tàng"
+                },
+                {
+                    "incorrect": "mẫu chuyện",
+                    "correct": "mẩu chuyện"
+                },
+                {
+                    "incorrect": "tiểu sử",
+                    "correct": "tiểu sử"
+                },
+                {
+                    "incorrect": "đổ dãy",
+                    "correct": "đỗ đạt"
+                },
+                {
+                    "incorrect": "bổ sung",
+                    "correct": "bổ sung"
+                },
+                {
+                    "incorrect": "quả cảm",
+                    "correct": "quả cảm"
+                },
+                {
+                    "incorrect": "rủ rê",
+                    "correct": "rủ rê"
+                }
+            ]
+        },
+        "ch_tr_confusion": {
+            "description": "CH và TR nhầm lẫn do phương ngữ Nam/Bắc.",
+            "pairs": [
+                {
+                    "incorrect": "chân thành",
+                    "correct": "chân thành"
+                },
+                {
+                    "incorrect": "chung tâm",
+                    "correct": "trung tâm"
+                },
+                {
+                    "incorrect": "chuyền thoại",
+                    "correct": "truyền thoại"
+                },
+                {
+                    "incorrect": "chiến chanh",
+                    "correct": "chiến tranh"
+                },
+                {
+                    "incorrect": "chầu trọng",
+                    "correct": "trầu không"
+                },
+                {
+                    "incorrect": "chàn ngập",
+                    "correct": "tràn ngập"
+                },
+                {
+                    "incorrect": "chuyền thống",
+                    "correct": "truyền thống"
+                },
+                {
+                    "incorrect": "chanh thủ",
+                    "correct": "tranh thủ"
+                },
+                {
+                    "incorrect": "chình bày",
+                    "correct": "trình bày"
+                },
+                {
+                    "incorrect": "chuẩn bị",
+                    "correct": "chuẩn bị"
+                }
+            ]
+        },
+        "vowel_confusion": {
+            "description": "Nhầm lẫn các nguyên âm i/y, ă/a, o/ô.",
+            "pairs": [
+                {
+                    "incorrect": "lí do",
+                    "correct": "lý do"
+                },
+                {
+                    "incorrect": "qui định",
+                    "correct": "quy định"
+                },
+                {
+                    "incorrect": "kỷ niệm",
+                    "correct": "kỷ niệm"
+                },
+                {
+                    "incorrect": "tiêng lòng",
+                    "correct": "tiếng lòng"
+                },
+                {
+                    "incorrect": "điều chỉnh",
+                    "correct": "điều chỉnh"
+                },
+                {
+                    "incorrect": "miễng",
+                    "correct": "miếng"
+                },
+                {
+                    "incorrect": "niềng",
+                    "correct": "niềng"
+                },
+                {
+                    "incorrect": "khuynh hướng",
+                    "correct": "khuynh hướng"
+                },
+                {
+                    "incorrect": "quyền lợi",
+                    "correct": "quyền lợi"
+                },
+                {
+                    "incorrect": "truyện tranh",
+                    "correct": "truyện tranh"
+                }
+            ]
+        },
+        "ending_consonant_confusion": {
+            "description": "Nhầm lẫn phụ âm cuối: -n/-ng, -t/-c, -nh/-ch.",
+            "pairs": [
+                {
+                    "incorrect": "xon xao",
+                    "correct": "xôn xao"
+                },
+                {
+                    "incorrect": "ân hận",
+                    "correct": "ân hận"
+                },
+                {
+                    "incorrect": "ráng sức",
+                    "correct": "rán sức"
+                },
+                {
+                    "incorrect": "hoàng loạn",
+                    "correct": "hoang loạn"
+                },
+                {
+                    "incorrect": "hủy hoạch",
+                    "correct": "hủy hoại"
+                },
+                {
+                    "incorrect": "được mất",
+                    "correct": "được mất"
+                },
+                {
+                    "incorrect": "sức khỏe",
+                    "correct": "sức khỏe"
+                },
+                {
+                    "incorrect": "lịc sử",
+                    "correct": "lịch sử"
+                },
+                {
+                    "incorrect": "đất nướt",
+                    "correct": "đất nước"
+                },
+                {
+                    "incorrect": "khác nhau",
+                    "correct": "khác nhau"
+                }
+            ]
+        }
+    },
+    "asr_specific_errors": {
+        "description": "Lỗi đặc thù của ASR khi xử lý tiếng Việt (Whisper)",
+        "patterns": [
+            {
+                "incorrect": "điều trú",
+                "correct": "lưu trú"
+            },
+            {
+                "incorrect": "căn cước công dân",
+                "correct": "căn cước công dân"
+            },
+            {
+                "incorrect": "yêu đãi",
+                "correct": "ưu đãi"
+            },
+            {
+                "incorrect": "niêm iết",
+                "correct": "niêm yết"
+            },
+            {
+                "incorrect": "đặt cầu",
+                "correct": "đặt cọc"
+            },
+            {
+                "incorrect": "cuộc quả",
+                "correct": "cuộc gọi"
+            },
+            {
+                "incorrect": "vui nòng",
+                "correct": "vui lòng"
+            },
+            {
+                "incorrect": "lưu ý",
+                "correct": "lưu ý"
+            },
+            {
+                "incorrect": "thanh toán",
+                "correct": "thanh toán"
+            },
+            {
+                "incorrect": "chuyển khoản",
+                "correct": "chuyển khoản"
+            }
+        ]
+    },
+    "english_vietnamese_phonetic": {
+        "description": "Lỗi khi ASR nhầm từ tiếng Anh trong ngữ cảnh tiếng Việt",
+        "patterns": [
+            {
+                "incorrect": "đi lắc",
+                "correct": "Deluxe"
+            },
+            {
+                "incorrect": "đi lận",
+                "correct": "Deluxe"
+            },
+            {
+                "incorrect": "x kế tiếp",
+                "correct": "Executive"
+            },
+            {
+                "incorrect": "xkz",
+                "correct": "Executive"
+            },
+            {
+                "incorrect": "phi nịt xen tơ",
+                "correct": "Fitness Center"
+            },
+            {
+                "incorrect": "săn đớt",
+                "correct": "Standard"
+            },
+            {
+                "incorrect": "su pê ri ơ",
+                "correct": "Superior"
+            },
+            {
+                "incorrect": "xiu",
+                "correct": "Suite"
+            },
+            {
+                "incorrect": "bu phê",
+                "correct": "buffet"
+            },
+            {
+                "incorrect": "chếch in",
+                "correct": "check-in"
+            },
+            {
+                "incorrect": "chếch ao",
+                "correct": "check-out"
+            }
+        ]
+    },
+    "hotel_brand_names": {
+        "description": "Tên khách sạn thường bị ASR nhận sai",
+        "patterns": [
+            {
+                "incorrect": "G.W.Mirrors",
+                "correct": "JW Marriott"
+            },
+            {
+                "incorrect": "G.W. Marriott",
+                "correct": "JW Marriott"
+            },
+            {
+                "incorrect": "ma ri ốt",
+                "correct": "Marriott"
+            },
+            {
+                "incorrect": "in tơ con ti nen tồ",
+                "correct": "InterContinental"
+            },
+            {
+                "incorrect": "hai ạt",
+                "correct": "Hyatt"
+            },
+            {
+                "incorrect": "sê ra tôn",
+                "correct": "Sheraton"
+            },
+            {
+                "incorrect": "hin tôn",
+                "correct": "Hilton"
+            },
+            {
+                "incorrect": "pun măn",
+                "correct": "Pullman"
+            },
+            {
+                "incorrect": "nô vô ten",
+                "correct": "Novotel"
+            },
+            {
+                "incorrect": "me trô pôn",
+                "correct": "Metropole"
+            }
+        ]
+    },
+    "vietnamese_homophones_common": {
+        "description": "500+ cặp từ đồng âm phổ biến trong tiếng Việt (Viện Ngôn ngữ học VN)",
+        "examples": [
+            {
+                "word": "đường",
+                "meanings": [
+                    "nơi đi lại",
+                    "chất ngọt"
+                ]
+            },
+            {
+                "word": "bàn",
+                "meanings": [
+                    "đồ vật",
+                    "thảo luận"
+                ]
+            },
+            {
+                "word": "câu",
+                "meanings": [
+                    "đơn vị ngữ pháp",
+                    "hành động câu cá"
+                ]
+            },
+            {
+                "word": "đá",
+                "meanings": [
+                    "khoáng vật",
+                    "hành động sút",
+                    "đá lạnh"
+                ]
+            },
+            {
+                "word": "chín",
+                "meanings": [
+                    "số 9",
+                    "trạng thái chín"
+                ]
+            },
+            {
+                "word": "bò",
+                "meanings": [
+                    "con bò",
+                    "hành động bò"
+                ]
+            },
+            {
+                "word": "cổ",
+                "meanings": [
+                    "cổ xưa",
+                    "cổ người"
+                ]
+            },
+            {
+                "word": "cá",
+                "meanings": [
+                    "con cá",
+                    "cá cược"
+                ]
+            },
+            {
+                "word": "ba",
+                "meanings": [
+                    "số 3",
+                    "bố/cha"
+                ]
+            },
+            {
+                "word": "sút",
+                "meanings": [
+                    "giảm sút",
+                    "đá bóng"
+                ]
+            }
+        ]
+    },
+    "regional_dialect_corrections": {
+        "description": "Lỗi do khác biệt phương ngữ (Bắc/Trung/Nam)",
+        "north_south_pairs": [
+            {
+                "north": "giời",
+                "south": "trời",
+                "standard": "trời"
+            },
+            {
+                "north": "gì",
+                "south": "dì",
+                "standard": "gì"
+            },
+            {
+                "north": "đâu",
+                "south": "đâu",
+                "standard": "đâu"
+            },
+            {
+                "north": "sao",
+                "south": "sao",
+                "standard": "sao"
+            },
+            {
+                "north": "rồi",
+                "south": "rồi",
+                "standard": "rồi"
+            }
+        ]
+    }
+}

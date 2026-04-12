@@ -1,0 +1,28 @@
+{
+    "STRATEGIC_ASSESSMENT": {
+        "executive_briefing": "Vào hồi 08:30 ngày 15/02/2024, tại địa điểm giao dịch (được xác định là Khách sạn Sheila Premier Hà Nội), đối tượng Nguyễn Văn A (vai trò: Khách hàng) đã tiến hành trao đổi với nhân viên lễ tân Cao Thị B về việc đặt phòng lưu trú cho chuyến công tác. Trong quá trình thương thảo, đối tượng A đề nghị mức ngân sách dao động từ 3.000.000 VNĐ đến 5.000.000 VNĐ/đêm và đặc biệt quan tâm đến tiện ích nhạy cảm là 'Bữa sáng riêng tư'. Sau khi được tư vấn, đối tượng đã đồng ý chốt phương án phòng Executive Suite với giá 4.500.000 VNĐ, thanh toán trực tiếp bằng tiền mặt để tránh lưu vết giao dịch điện tử.",
+        "threat_matrix": {
+            "level": "CRITICAL / HIGH / MEDIUM / LOW / BENIGN",
+            "classification": "Lừa đảo / Rửa tiền / Giao dịch dân sự /...",
+            "justification": "Lý giải chi tiết tại sao đánh giá mức độ này dựa trên hành vi và ngôn ngữ."
+        }
+    },
+    "TACTICAL_INTELLIGENCE": {
+        "entities_and_relationships": {
+            "description": "Mạng lưới quan hệ nhân thân và vai trò (Ai là trùm, ai là lính, ai là nạn nhân)",
+            "data": "... (Dữ liệu từ module 5W1H nhưng được làm giàu thêm, xác định rõ mối quan hệ)"
+        },
+        "key_events_timeline": "... (Dòng sự kiện chính theo trình tự thời gian)"
+    },
+    "BEHAVIORAL_PROFILING": {
+        "psychological_state": "... (Phân tích cảm xúc và tâm lý)",
+        "shadow_profile": {
+            "life_patterns": "Thói quen, Lịch trình di chuyển, Khung giờ hoạt động (Trích xuất từ dữ liệu ngầm)",
+            "socio_economic_status": "Khả năng tài chính, Giai tầng xã hội"
+        }
+    },
+    "OPERATIONAL_RECOMMENDATIONS": [
+        "Khuyến nghị 1: ...",
+        "Khuyến nghị 2: ..."
+    ]
+}

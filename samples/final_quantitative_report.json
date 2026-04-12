@@ -1,0 +1,42 @@
+{
+    "STRATEGIC_ASSESSMENT": {
+        "executive_briefing": "Cuộc hội thoại diễn ra giữa hành khách tên Quyên (Khách hàng) và nhân viên Tiếp tân vào thời điểm trước chuyến công tác. Nội dung chính là xác nhận yêu cầu đặt phòng cho ngày mai (Time: Tomorrow). Chi tiết quan trọng bao gồm: Đối tượng yêu cầu 01 phòng đơn có kèm 'Bữa sáng' (Amenity: Breakfast included) để đảm bảo lịch trình công việc. Không có giao dịch tài chính cụ thể được chốt trong cuộc gọi (Số tiền: TBD), nhưng mục đích 'Công tác' (Business Purpose) được xác định rõ ràng.",
+        "threat_matrix": {
+            "level": "BENIGN",
+            "classification": "Giao dịch dân sự / Hậu cần",
+            "justification": "Hoạt động chuẩn bị cho chuyến đi hợp pháp, không có dấu hiệu gian lận."
+        }
+    },
+    "TACTICAL_INTELLIGENCE": {
+        "entities_and_relationships": {
+            "description": "Mạng lưới quan hệ nhân thân và vai trò",
+            "data": [
+                {
+                    "name": "Quyên",
+                    "role": "Người đi công tác (Business Traveler)",
+                    "relationship_network": [
+                        "Khách hàng (Người mua dịch vụ)"
+                    ]
+                },
+                {
+                    "name": "Tiếp tân",
+                    "role": "Người cung cấp dịch vụ",
+                    "relationship_network": [
+                        "Đại diện khách sạn"
+                    ]
+                }
+            ]
+        },
+        "key_events_timeline": "Yêu cầu đặt phòng -> Xác nhận thời gian (Ngày mai) -> Yêu cầu tiện ích (Bữa sáng)."
+    },
+    "BEHAVIORAL_PROFILING": {
+        "psychological_state": "Rõ ràng, Dứt khoát (Decisive).",
+        "shadow_profile": {
+            "life_patterns": "Di chuyển công tác thường xuyên (Frequent Flyer/Traveler). Coi trọng thời gian và sự tiện lợi.",
+            "socio_economic_status": "Trung lưu (Middle Class). Có ngân sách công tác (Per diem)."
+        }
+    },
+    "OPERATIONAL_RECOMMENDATIONS": [
+        "Tiếp tục cập nhật hồ sơ di chuyển."
+    ]
+}

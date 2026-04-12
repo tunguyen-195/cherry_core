@@ -1,0 +1,48 @@
+{
+    "STRATEGIC_ASSESSMENT": {
+        "intelligence_abstract": "Đây là một cuộc hội thoại giao dịch dân sự điển hình giữa một cá nhân (khách hàng) và cơ sở cung cấp dịch vụ lưu trú. Bản chất cuộc giao tiếp là 'Hoạch định Hậu cần' (Logistical Planning) phục vụ cho một chuyến công tác (Business Trip). Qua ngữ điệu và nội dung, có thể nhận định đối tượng là người có kế hoạch rõ ràng, ưu tiên hiệu suất công việc (thể hiện qua yêu cầu bữa sáng tiết kiệm thời gian) và hoạt động trong môi trường chuyên nghiệp. Không phát hiện dấu hiệu bất thường về an ninh hay tội phạm. Tuy nhiên, dữ liệu này có giá trị cao cho việc xây dựng 'Shadow Profile' về thói quen di chuyên và mức sống của đối tượng.",
+        "threat_matrix": {
+            "level": "BENIGN",
+            "classification": "Giao dịch dân sự / Business Logistics",
+            "justification": "Ngôn ngữ thằng thắn, mục đích rõ ràng, không có dấu hiệu che giấu, thao túng hay căng thẳng tâm lý."
+        }
+    },
+    "TACTICAL_INTELLIGENCE": {
+        "entities_and_relationships": {
+            "description": "Mạng lưới quan hệ nhân thân và vai trò",
+            "data": [
+                {
+                    "name": "Quyên (Người đặt phòng)",
+                    "role": "Khách hàng doanh nghiệp (Business Client)",
+                    "relationships": [
+                        "Đại diện cho nhu cầu cá nhân/tổ chức",
+                        "Người chi trả (Paymaster)"
+                    ]
+                },
+                {
+                    "name": "Cơ sở lưu trú (Ẩn)",
+                    "role": "Đơn vị cung cấp",
+                    "relationships": [
+                        "Đối tác cung ứng dịch vụ"
+                    ]
+                }
+            ]
+        },
+        "key_events_timeline": [
+            "Thời điểm hiện tại: Liên hệ khởi tạo yêu cầu.",
+            "Tương lai gần (Ngày mai): Di chuyển đến địa điểm và check-in.",
+            "Sự kiện phụ: Sử dụng dịch vụ ăn uống (Bữa sáng) tại khách sạn."
+        ]
+    },
+    "BEHAVIORAL_PROFILING": {
+        "psychological_state": "Trạng thái tâm lý ổn định, tập trung (Focused). Sử dụng cấu trúc câu mệnh lệnh mềm ('Tôi muốn...', 'Cho tôi hỏi...'), thể hiện sự tự tin và kiểm soát tình huống.",
+        "shadow_profile": {
+            "life_patterns": "Thường xuyên di chuyển công tác. Có thói quen lên kế hoạch trước (Pre-planning). Hoạt động độc lập trong chuyến đi này.",
+            "socio_economic_status": "Tầng lớp trung lưu (Middle Class) trở lên. Có khả năng chi trả cho dịch vụ tiện ích đi kèm (Bữa sáng khách sạn) thay vì tự túc giá rẻ."
+        }
+    },
+    "OPERATIONAL_RECOMMENDATIONS": [
+        "Khuyến nghị 1: Không cần can thiệp nghiệp vụ an ninh.",
+        "Khuyến nghị 2: Ghi nhận lịch trình di chuyển vào 'Hồ sơ giám sát di biến động' nếu đối tượng nằm trong diện quan tâm khác."
+    ]
+}

@@ -1,0 +1,39 @@
+# Python caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage*
+
+# Internal tooling state
+.agent/
+AGENT_HANDOFF.md
+
+# Virtual environments
+.venv/
+venv/
+venv_wsl/
+
+# Editor / OS noise
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Local runtime artifacts
+output/
+*.log
+*.tmp
+dist/
+build/
+*.egg-info/
+
+# Large local-only assets
+models/
+data/
+temp_snippet.wav
+
+# Vendored packaging metadata not required at runtime
+.vendor/bin/
+.vendor/*.dist-info/

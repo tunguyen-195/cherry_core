@@ -1,0 +1,66 @@
+Kịch bản nghiệp vụ: {{ scenario_label }}
+Mức độ đe dọa: {{ threat_level }}
+Phân loại: {{ classification }}
+
+Tóm tắt tình huống:
+{{ executive_briefing }}
+
+Kết luận nhanh:
+- {{ verdict }}
+{% if investigator_note %}- {{ investigator_note }}{% endif %}
+
+Dấu hiệu cần chú ý:
+{% for item in risk_flags %}
+- [{{ item.level|upper }}] {{ item.label }}{% if item.detail %}: {{ item.detail }}{% endif %}
+{% else %}
+- Chưa ghi nhận cờ cảnh báo nổi bật.
+{% endfor %}
+
+Chủ thể và liên hệ:
+{% for item in subject_items %}
+- {{ item.label }}{% if item.value %}: {{ item.value }}{% endif %}{% if item.meta %} | {{ item.meta }}{% endif %}
+{% else %}
+- Không có thông tin rõ ràng.
+{% endfor %}
+
+Địa điểm và mốc nhạy cảm:
+{% for item in location_items %}
+- {{ item.label }}{% if item.value %}: {{ item.value }}{% endif %}{% if item.meta %} | {{ item.meta }}{% endif %}
+{% else %}
+- Không có thông tin rõ ràng.
+{% endfor %}
+
+Mốc thời gian và hành động:
+{% for item in timeline_items %}
+- {{ item.time }}: {{ item.title }}{% if item.location %} | Địa điểm: {{ item.location }}{% endif %}{% if item.actors %} | Liên quan: {{ item.actors|join(', ') }}{% endif %}{% if item.detail %} | {{ item.detail }}{% endif %}
+{% else %}
+- Không có timeline đủ rõ để trích xuất.
+{% endfor %}
+
+Thông tin nhạy cảm:
+{% for item in sensitive_items %}
+- {{ item.label }}{% if item.value %}: {{ item.value }}{% endif %}{% if item.meta %} | {{ item.meta }}{% endif %}
+{% else %}
+- Chưa phát hiện thông tin nhạy cảm nổi bật.
+{% endfor %}
+
+Tài chính và giao dịch:
+{% for item in finance_items %}
+- {{ item.label }}{% if item.value %}: {{ item.value }}{% endif %}{% if item.meta %} | {{ item.meta }}{% endif %}
+{% else %}
+- Không ghi nhận chi tiết tài chính đáng chú ý.
+{% endfor %}
+
+Từ lóng và ám hiệu:
+{% for item in slang_items %}
+- {{ item.label }}{% if item.value %}: {{ item.value }}{% endif %}{% if item.meta %} | {{ item.meta }}{% endif %}
+{% else %}
+- Chưa phát hiện từ lóng hoặc ám hiệu rõ ràng.
+{% endfor %}
+
+Khuyến nghị tác nghiệp:
+{% for item in recommendations %}
+- {{ item }}
+{% else %}
+- Chưa có khuyến nghị tác nghiệp.
+{% endfor %}

@@ -1,0 +1,35 @@
+<|im_start|>system
+MODULE: INTELLIGENCE_5W1H (Định danh & Sự kiện)
+Mục tiêu: Trích xuất toàn bộ thực thể và cấu trúc hóa sự kiện theo mô hình 5W1H.
+
+HƯỚNG DẪN TRÍCH XUẤT:
+1.  **WHO (Ai)**:
+    -   Liệt kê tất cả cá nhân/tổ chức xuất hiện.
+    -   Xác định Vai trò (Role) và Mối quan hệ (Relationship) giữa họ (VD: Vợ chồng, Đại ca - Đàn em, Kẻ bán - Người mua).
+2.  **WHAT (Cái gì/Làm gì)**:
+    -   Sự việc chính đang diễn ra là gì? (Giao dịch, cãi vã, lên kế hoạch, lừa đảo).
+3.  **WHERE (Ở đâu)**:
+    -   Địa điểm thực địa (Nhà, Khách sạn, Quán cafe).
+    -   Địa điểm ảo (Zalo, Telegram, Web cờ bạc).
+4.  **WHEN (Khi nào)**:
+    -   Mốc thời gian cụ thể (8h sáng, tối nay).
+    -   Khoảng thời gian (trong 2 tiếng, 3 ngày tới).
+5.  **WHY (Tại sao)**:
+    -   Động cơ của hành động (Vì tiền, trả thù, tống tiền, sợ hãi).
+6.  **HOW (Như thế nào)**:
+    -   Phương thức thực hiện (Chuyển khoản, gặp trực tiếp, dùng vũ khí).
+
+ĐẦU RA (JSON Section):
+"intelligence_5w1h": {
+  "people": [
+    {"name": "...", "role": "...", "relationship_network": ["Vợ của A", "Đàn em của B", "Đối tác của C"]}
+  ],
+  "events": [
+    {"action": "...", "time": "...", "location": "...", "method": "..."}
+  ],
+  "context": {
+    "main_topic": "...",
+    "motivation": "..."
+  }
+}
+<|im_end|>
