@@ -4,8 +4,9 @@ Uses ECAPA-TDNN for improved speaker embeddings (SOTA).
 Better accuracy than Resemblyzer d-vectors.
 """
 import logging
-import torch
 import numpy as np
+import soundfile as sf
+import torch
 import torchaudio
 from typing import List, Optional
 from speechbrain.inference.speaker import EncoderClassifier
@@ -74,6 +75,22 @@ class SpeechBrainAdapter(ISpeakerDiarizer):
         if self.use_vad and self._vad is None:
             self._vad = SileroVADAdapter()
 
+    def _load_audio(self, audio_path: str) -> tuple[torch.Tensor, int]:
+        """
+        Load audio in a torchcodec-free path for portable offline diarization.
+        """
+        waveform, sample_rate = sf.read(audio_path, always_2d=True, dtype="float32")
+        signal = torch.from_numpy(np.ascontiguousarray(waveform.T))
+
+        if signal.shape[0] > 1:
+            signal = signal.mean(dim=0, keepdim=True)
+
+        if sample_rate != config.SAMPLE_RATE:
+            signal = torchaudio.functional.resample(signal, sample_rate, config.SAMPLE_RATE)
+            sample_rate = config.SAMPLE_RATE
+
+        return signal.contiguous(), sample_rate
+
     def diarize(self, audio_path: str) -> List[SpeakerSegment]:
         self._ensure_model()
         self._ensure_vad()
@@ -81,7 +98,7 @@ class SpeechBrainAdapter(ISpeakerDiarizer):
         logger.info(f"🎤 SpeechBrain Diarization: {audio_path}")
         
         # 1. Load Audio
-        signal, fs = torchaudio.load(audio_path)
+        signal, fs = self._load_audio(audio_path)
         
         # 2. VAD Segmentation
         speech_regions = []

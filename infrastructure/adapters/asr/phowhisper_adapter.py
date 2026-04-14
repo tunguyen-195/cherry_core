@@ -13,13 +13,15 @@ import logging
 from pathlib import Path
 import re
 
+import numpy as np
+import soundfile as sf
 import torch
 from transformers import WhisperProcessor, WhisperForConditionalGeneration
 import torchaudio
 
 from core.ports.asr_port import ITranscriber
 from core.domain.entities import Transcript
-from core.config import MODELS_DIR
+from core.config import MODELS_DIR, SAMPLE_RATE
 
 logger = logging.getLogger(__name__)
 
@@ -122,6 +124,7 @@ class PhoWhisperAdapter(ITranscriber):
     @classmethod
     def runtime_ready(cls) -> bool:
         try:
+            import soundfile  # noqa: F401
             import transformers  # noqa: F401
             import torchaudio  # noqa: F401
         except Exception:
@@ -152,17 +155,10 @@ class PhoWhisperAdapter(ITranscriber):
         logger.info(f"🎙️ PhoWhisper transcribing: {audio_path}")
         
         # Load and preprocess audio
-        waveform, sample_rate = torchaudio.load(audio_path)
-        
-        if sample_rate != 16000:
-            resampler = torchaudio.transforms.Resample(sample_rate, 16000)
-            waveform = resampler(waveform)
-        
-        if waveform.shape[0] > 1:
-            waveform = waveform.mean(dim=0, keepdim=True)
+        waveform, _sample_rate = self._load_audio(audio_path)
         
         # Get audio duration
-        audio_duration = waveform.shape[1] / 16000
+        audio_duration = waveform.shape[1] / SAMPLE_RATE
         
         # Process in chunks for long audio (Whisper limit: 30s)
         chunk_length = 30.0  # seconds
@@ -173,15 +169,15 @@ class PhoWhisperAdapter(ITranscriber):
             chunk_results.extend(self._transcribe_chunk(waveform.squeeze().numpy(), 0))
         else:
             # Long audio: process in chunks with overlap
-            chunk_samples = int(chunk_length * 16000)
-            step_samples = int(25.0 * 16000)  # 25s step, 5s overlap
+            chunk_samples = int(chunk_length * SAMPLE_RATE)
+            step_samples = int(25.0 * SAMPLE_RATE)  # 25s step, 5s overlap
             
             waveform_flat = waveform.squeeze()
             offset = 0
             
             while offset < waveform_flat.shape[0]:
                 chunk = waveform_flat[offset:offset + chunk_samples]
-                time_offset = offset / 16000
+                time_offset = offset / SAMPLE_RATE
                 
                 chunk_results.extend(self._transcribe_chunk(chunk.numpy(), time_offset))
                 
@@ -202,6 +198,26 @@ class PhoWhisperAdapter(ITranscriber):
                 "wer_benchmark": "4.67% (VIVOS)"
             }
         )
+
+    def _load_audio(self, audio_path: str) -> tuple[torch.Tensor, int]:
+        """
+        Load audio without relying on torchaudio backend codecs.
+
+        torchaudio.load now routes through torchcodec on some builds, which breaks
+        clean offline installs on Windows. We keep the repo portable by decoding
+        with soundfile and only using torchaudio for in-memory resampling.
+        """
+        waveform, sample_rate = sf.read(audio_path, always_2d=True, dtype="float32")
+        waveform_tensor = torch.from_numpy(np.ascontiguousarray(waveform.T))
+
+        if waveform_tensor.shape[0] > 1:
+            waveform_tensor = waveform_tensor.mean(dim=0, keepdim=True)
+
+        if sample_rate != SAMPLE_RATE:
+            waveform_tensor = torchaudio.functional.resample(waveform_tensor, sample_rate, SAMPLE_RATE)
+            sample_rate = SAMPLE_RATE
+
+        return waveform_tensor.contiguous(), sample_rate
     
     def _transcribe_chunk(self, audio_array, time_offset: float):
         """Transcribe a single audio chunk."""
@@ -209,7 +225,7 @@ class PhoWhisperAdapter(ITranscriber):
         # Prepare input
         batch = self._processor(
             audio_array,
-            sampling_rate=16000,
+            sampling_rate=SAMPLE_RATE,
             return_attention_mask=True,
             return_tensors="pt"
         )
@@ -242,7 +258,7 @@ class PhoWhisperAdapter(ITranscriber):
         )[0].strip()
         
         # Create simple segment (we'll use diarization for timing)
-        chunk_duration = len(audio_array) / 16000
+        chunk_duration = len(audio_array) / SAMPLE_RATE
         return [{
             "start": time_offset,
             "end": time_offset + chunk_duration,

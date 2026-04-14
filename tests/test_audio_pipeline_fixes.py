@@ -10,6 +10,7 @@ import torch
 from application.services.model_inventory_service import ModelInventoryService
 from infrastructure.adapters.asr import phowhisper_adapter as phowhisper_module
 from infrastructure.adapters.asr.phowhisper_adapter import PhoWhisperAdapter
+from infrastructure.adapters.diarization.speechbrain_adapter import SpeechBrainAdapter
 from infrastructure.adapters.llm.llamacpp_adapter import LlamaCppAdapter
 from infrastructure.adapters.vad.silero_adapter import SileroVADAdapter
 
@@ -112,6 +113,87 @@ def test_phowhisper_transcribe_chunk_passes_decoder_prompt_via_generation_config
     assert generation_config.forced_decoder_ids == [(1, 2), (2, 3)]
     assert "forced_decoder_ids" not in captured["generate_kwargs"]
     assert segments[0]["text"] == "xin chào"
+
+
+def test_phowhisper_transcribe_loads_audio_without_torchaudio_backend(monkeypatch, tmp_path: Path):
+    sample_rate = 8000
+    duration_sec = 0.25
+    time_axis = np.linspace(0, duration_sec, int(sample_rate * duration_sec), endpoint=False)
+    mono_wave = 0.2 * np.sin(2 * np.pi * 220 * time_axis).astype(np.float32)
+    stereo_wave = np.stack([mono_wave, mono_wave], axis=1)
+    audio_path = tmp_path / "stereo_8k.wav"
+    sf.write(audio_path, stereo_wave, sample_rate)
+
+    model_dir = tmp_path / "phowhisper-safe"
+    model_dir.mkdir(parents=True, exist_ok=True)
+    for filename in ("config.json", "preprocessor_config.json", "tokenizer.json", "model.safetensors"):
+        (model_dir / filename).write_text("x", encoding="utf-8")
+
+    class FakeTokenizer:
+        def get_decoder_prompt_ids(self, language: str, task: str):
+            assert (language, task) == ("vi", "transcribe")
+            return [(1, 2)]
+
+    class FakeBatch:
+        def __init__(self):
+            self.input_features = torch.zeros((1, 80, 8), dtype=torch.float32)
+            self.attention_mask = torch.ones((1, 8), dtype=torch.long)
+
+    class FakeProcessor:
+        def __init__(self):
+            self.tokenizer = FakeTokenizer()
+
+        def __call__(self, audio_array, **_kwargs):
+            assert len(audio_array) > len(mono_wave)
+            return FakeBatch()
+
+        def batch_decode(self, _ids, skip_special_tokens=True):
+            assert skip_special_tokens is True
+            return ["xin chào ngoại tuyến"]
+
+    class FakeModel:
+        def __init__(self):
+            self.generation_config = SimpleNamespace(forced_decoder_ids=None)
+
+        def to(self, _device):
+            return self
+
+        def eval(self):
+            return self
+
+        def generate(self, _input_features, **_kwargs):
+            return torch.tensor([[1, 2, 3]])
+
+    def fail_torchaudio_load(*_args, **_kwargs):
+        raise AssertionError("PhoWhisperAdapter should not call torchaudio.load")
+
+    monkeypatch.setattr(PhoWhisperAdapter, "MODEL_PATHS", [model_dir])
+    monkeypatch.setattr(phowhisper_module, "WhisperProcessor", SimpleNamespace(from_pretrained=lambda *_args, **_kwargs: FakeProcessor()))
+    monkeypatch.setattr(phowhisper_module, "WhisperForConditionalGeneration", SimpleNamespace(from_pretrained=lambda *_args, **_kwargs: FakeModel()))
+    monkeypatch.setattr(phowhisper_module.torchaudio, "load", fail_torchaudio_load)
+
+    transcript = PhoWhisperAdapter(device="cpu").transcribe(str(audio_path))
+
+    assert transcript.text == "xin chào ngoại tuyến"
+    assert transcript.segments[0]["text"] == "xin chào ngoại tuyến"
+
+
+def test_speechbrain_load_audio_without_torchaudio_backend(tmp_path: Path):
+    sample_rate = 8000
+    duration_sec = 0.25
+    time_axis = np.linspace(0, duration_sec, int(sample_rate * duration_sec), endpoint=False)
+    mono_wave = 0.2 * np.sin(2 * np.pi * 220 * time_axis).astype(np.float32)
+    stereo_wave = np.stack([mono_wave, mono_wave], axis=1)
+    audio_path = tmp_path / "speechbrain_stereo_8k.wav"
+    sf.write(audio_path, stereo_wave, sample_rate)
+
+    signal, loaded_sample_rate = SpeechBrainAdapter(use_vad=False)._load_audio(str(audio_path))
+
+    assert loaded_sample_rate == 16000
+    assert signal.ndim == 2
+    assert signal.shape[0] == 1
+    assert signal.dtype == torch.float32
+    assert signal.shape[1] > len(mono_wave)
 
 
 def test_model_inventory_uses_runtime_ready_signals(monkeypatch, tmp_path: Path):

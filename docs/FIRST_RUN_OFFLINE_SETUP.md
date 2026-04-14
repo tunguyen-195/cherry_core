@@ -149,3 +149,8 @@ If the target machine should run with no internet at all:
 6. start `python webapp.py`
 
 The app itself does not require internet once dependencies and local model files are already in place.
+
+## 7. Troubleshooting
+
+- If you see `TorchCodec is required for load_with_torchcodec`, update to the latest `main` and restart the app.
+- The supported repo path does not require `torchcodec` for `PhoWhisper` or `SpeechBrain`; audio is loaded through a portable local decoding path inside the project.
