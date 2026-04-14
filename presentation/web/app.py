@@ -1,7 +1,10 @@
 from __future__ import annotations
 
+import ctypes
 import logging
+import os
 from pathlib import Path
+from typing import Any
 
 import uvicorn
 from fastapi import FastAPI, File, Form, HTTPException, Request, UploadFile
@@ -18,6 +21,50 @@ logger = logging.getLogger(__name__)
 WEB_DIR = Path(__file__).resolve().parent
 TEMPLATES_DIR = WEB_DIR / "templates"
 STATIC_DIR = WEB_DIR / "static"
+
+STD_INPUT_HANDLE = -10
+ENABLE_QUICK_EDIT_MODE = 0x0040
+ENABLE_EXTENDED_FLAGS = 0x0080
+
+
+def _disable_windows_quick_edit_mode(kernel32: Any | None = None) -> bool:
+    """
+    Disable QuickEdit on the current console only.
+
+    On classic Windows consoles, a stray mouse selection can freeze the Python
+    process until Enter/Esc is pressed. Disabling QuickEdit for this process
+    avoids that false "webapp hangs until I press Enter" behavior.
+    """
+    if os.name != "nt":
+        return False
+
+    try:
+        kernel32 = kernel32 or ctypes.windll.kernel32
+        handle = kernel32.GetStdHandle(STD_INPUT_HANDLE)
+        if handle in (0, -1):
+            return False
+
+        current_mode = ctypes.c_uint()
+        if not kernel32.GetConsoleMode(handle, ctypes.byref(current_mode)):
+            return False
+
+        new_mode = (current_mode.value | ENABLE_EXTENDED_FLAGS) & ~ENABLE_QUICK_EDIT_MODE
+        if new_mode == current_mode.value:
+            return True
+
+        return bool(kernel32.SetConsoleMode(handle, new_mode))
+    except Exception as exc:
+        logger.debug("Could not disable QuickEdit mode: %s", exc)
+        return False
+
+
+def _configure_runtime_environment() -> None:
+    os.environ.setdefault("TOKENIZERS_PARALLELISM", "false")
+    os.environ.setdefault("HF_HUB_DISABLE_PROGRESS_BARS", "1")
+    os.environ.setdefault("TRANSFORMERS_NO_ADVISORY_WARNINGS", "1")
+
+    if _disable_windows_quick_edit_mode():
+        logger.info("Disabled QuickEdit for the current webapp console.")
 
 
 def create_app(job_manager: WebJobManager | None = None) -> FastAPI:
@@ -132,6 +179,7 @@ def create_app(job_manager: WebJobManager | None = None) -> FastAPI:
     return app
 
 
+_configure_runtime_environment()
 app = create_app()
 
 
