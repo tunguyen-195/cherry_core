@@ -27,7 +27,7 @@ ProgressCallback = Callable[[str, int], None]
 
 @dataclass
 class SttJobOptions:
-    asr_engine: str = "phowhisper"
+    asr_engine: str = "whisper-v2"
     analysis_scenario: str = "general_intelligence"
     apply_vad: bool = True
     apply_hallucination_filter: bool = False
@@ -67,7 +67,7 @@ class SttJobOptions:
             normalized_device = "cpu"
         defaults["device"] = normalized_device
         defaults["requested_device"] = str(requested_device).lower() if requested_device is not None else None
-        defaults["asr_engine"] = str(defaults.get("asr_engine", "phowhisper")).lower()
+        defaults["asr_engine"] = str(defaults.get("asr_engine", "whisper-v2")).lower()
         defaults["analysis_scenario"] = str(defaults.get("analysis_scenario", "general_intelligence")).lower()
         defaults["speaker_mode"] = str(defaults.get("speaker_mode", "off")).lower()
         defaults["domain"] = str(defaults.get("domain", "general")).lower()

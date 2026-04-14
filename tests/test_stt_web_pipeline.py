@@ -157,3 +157,9 @@ def test_stt_job_options_falls_back_to_cpu_when_cuda_is_unavailable(monkeypatch)
 
     assert options.device == "cpu"
     assert options.requested_device == "cuda"
+
+
+def test_stt_job_options_defaults_to_whisper_v2():
+    options = SttJobOptions.from_dict({})
+
+    assert options.asr_engine == "whisper-v2"

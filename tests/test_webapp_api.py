@@ -121,6 +121,7 @@ def test_webapp_routes(tmp_path: Path):
     assert index.status_code == 200
     assert "Hệ thống trinh sát âm thanh" in index.text
     assert "Giảm ảo giác ngữ cảnh" in index.text
+    assert '<option value="whisper-v2" selected>' in index.text
 
     favicon = client.get("/favicon.ico")
     assert favicon.status_code == 204

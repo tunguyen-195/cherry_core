@@ -5,7 +5,7 @@ Webapp và pipeline STT tiếng Việt chạy hoàn toàn cục bộ cho bài to
 ## Mục tiêu
 
 - Chạy `offline-first`, không phụ thuộc dịch vụ Internet khi vận hành.
-- Giữ `PhoWhisper` làm ASR mặc định cho tiếng Việt.
+- Dùng `whisper-v2` làm ASR mặc định để ưu tiên độ ổn định khi chạy local/offline.
 - Dùng `whisper-v2` trên `faster-whisper/CTranslate2` để tránh lỗi `openai-whisper` với `NumPy 2.4`.
 - Cho phép bật từng bước xử lý thay vì ép chạy toàn bộ pipeline.
 - Ưu tiên `GPU` khi có CUDA, tự rơi về `CPU` khi không khả dụng hoặc khi người vận hành chọn thủ công.
@@ -26,8 +26,8 @@ Webapp và pipeline STT tiếng Việt chạy hoàn toàn cục bộ cho bài to
 - Job runner: `application/services/web_job_manager.py`
 - Pipeline: `application/services/stt_web_pipeline.py`
 - ASR chính:
-  - `phowhisper`: tiếng Việt mặc định
-  - `whisper-v2`: chạy trên `faster-whisper`, không dùng `openai-whisper`
+  - `whisper-v2`: mặc định, chạy trên `faster-whisper`, không dùng `openai-whisper`
+  - `phowhisper`: lane tăng cường cho tiếng Việt khi model local sẵn sàng
   - `whisperx`: tùy chọn mở rộng alignment/timeline
 - `Stable-TS` được vendor trong `.vendor/stable_whisper` và chỉ chạy khi bật thủ công
 - `pyannote` không nằm trong luồng webapp mặc định vì không phù hợp mục tiêu offline/local-only

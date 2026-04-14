@@ -31,7 +31,7 @@ class ASRConfig:
     """ASR Model Selection - All models MUST be downloaded locally first"""
     
     # Engine Selection: "phowhisper" (Vietnamese SOTA) or "whisper-v2" (General)
-    ENGINE = "phowhisper"
+    ENGINE = "whisper-v2"
     
     # PhoWhisper (VinAI) - SOTA for Vietnamese
     # Download at: https://huggingface.co/vinai/PhoWhisper-large

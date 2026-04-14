@@ -100,7 +100,7 @@ def create_app(job_manager: WebJobManager | None = None) -> FastAPI:
     @app.post("/api/jobs", response_model=JobStatusView)
     async def create_job(
         file: UploadFile = File(...),
-        asr_engine: str = Form("phowhisper"),
+        asr_engine: str = Form("whisper-v2"),
         analysis_scenario: str = Form("general_intelligence"),
         apply_vad: bool = Form(True),
         apply_hallucination_filter: bool = Form(False),
