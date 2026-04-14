@@ -81,6 +81,9 @@ class WebJobManager:
             "segments": [],
             "speaker_segments": [],
         }
+        requested_device = options_payload.get("device")
+        if str(requested_device).lower() == "cuda" and options.device == "cpu":
+            state["metadata"]["warnings"].append("CUDA không khả dụng; hệ thống tự chuyển sang CPU.")
 
         self._write_json(self._job_file(job_id), job_status)
         self._write_json(self._state_file(job_id), state)
@@ -192,8 +195,6 @@ class WebJobManager:
             raise RuntimeError("Speaker refinement model is not available.")
         if options.apply_vad and not inventory["features"].get("apply_vad"):
             raise RuntimeError("Silero VAD is not available.")
-        if options.device == "cuda" and not torch.cuda.is_available():
-            raise RuntimeError("CUDA device was requested but is not available.")
 
     def _validate_step(self, step: str, state: dict[str, Any], options: SttJobOptions) -> None:
         self._validate_options(options)

@@ -38,11 +38,13 @@ class SttJobOptions:
     speaker_mode: str = "off"
     speaker_refine: bool = False
     device: str = "cuda"
+    requested_device: str | None = None
 
     @classmethod
     def from_dict(cls, data: dict[str, Any]) -> "SttJobOptions":
         defaults = asdict(cls())
         defaults.update(data or {})
+        requested_device = defaults.get("device")
 
         for key in (
             "apply_vad",
@@ -61,7 +63,10 @@ class SttJobOptions:
             normalized_device = str(raw_device).lower()
         if normalized_device not in {"cpu", "cuda"}:
             normalized_device = "cuda" if torch.cuda.is_available() else "cpu"
+        if normalized_device == "cuda" and not torch.cuda.is_available():
+            normalized_device = "cpu"
         defaults["device"] = normalized_device
+        defaults["requested_device"] = str(requested_device).lower() if requested_device is not None else None
         defaults["asr_engine"] = str(defaults.get("asr_engine", "phowhisper")).lower()
         defaults["analysis_scenario"] = str(defaults.get("analysis_scenario", "general_intelligence")).lower()
         defaults["speaker_mode"] = str(defaults.get("speaker_mode", "off")).lower()

@@ -71,11 +71,21 @@ function applyCapabilityLocks(capabilities) {
   toggleOption("asrEngine", "whisperx", capabilities.asr_engines?.whisperx);
   toggleOption("device", "cuda", capabilities.devices?.cuda);
   toggleOption("speakerMode", "speechbrain", capabilities.speaker_modes?.speechbrain);
+  applyPreferredDevice(capabilities.devices || {});
 
   toggleCheckbox("applyVad", capabilities.features?.apply_vad);
   toggleCheckbox("applyProtonx", capabilities.features?.apply_protonx);
   toggleCheckbox("applyLlmCorrection", capabilities.features?.apply_llm_correction);
   toggleCheckbox("speakerRefine", capabilities.features?.speaker_refine);
+}
+
+function applyPreferredDevice(devices) {
+  const select = document.getElementById("device");
+  if (!select) {
+    return;
+  }
+
+  select.value = devices.cuda ? "cuda" : "cpu";
 }
 
 function toggleOption(selectId, optionValue, enabled) {

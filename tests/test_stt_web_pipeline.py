@@ -3,7 +3,7 @@ from __future__ import annotations
 from pathlib import Path
 
 from application.services.intel_presentation_service import IntelPresentationService
-from application.services.stt_web_pipeline import SttWebPipeline
+from application.services.stt_web_pipeline import SttJobOptions, SttWebPipeline
 from core.domain.entities import StrategicReport, Transcript
 
 
@@ -148,3 +148,12 @@ def test_intel_presentation_service_extracts_cards_timeline_and_risks():
     assert any(item["value"] == "Người bị theo dõi" for card in result["intel_cards"] for item in card["items"])
     assert result["intel_timeline"][0]["time"] == "19 giờ"
     assert any(flag["level"] == "high" for flag in result["risk_flags"])
+
+
+def test_stt_job_options_falls_back_to_cpu_when_cuda_is_unavailable(monkeypatch):
+    monkeypatch.setattr("application.services.stt_web_pipeline.torch.cuda.is_available", lambda: False)
+
+    options = SttJobOptions.from_dict({"device": "cuda"})
+
+    assert options.device == "cpu"
+    assert options.requested_device == "cuda"
