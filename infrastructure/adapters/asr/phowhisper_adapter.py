@@ -141,7 +141,8 @@ class PhoWhisperAdapter(ITranscriber):
             model_path / "tokenizer.json",
         ]
         has_safe_weights = bool(list(model_path.glob("model-*.safetensors"))) or (model_path / "model.safetensors").exists()
-        return all(path.exists() for path in required_files) and has_safe_weights
+        has_bin_weights = (model_path / "pytorch_model.bin").exists()
+        return all(path.exists() for path in required_files) and (has_safe_weights or has_bin_weights)
 
     def transcribe(self, audio_path: str) -> Transcript:
         """

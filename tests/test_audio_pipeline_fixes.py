@@ -216,3 +216,14 @@ def test_model_inventory_uses_runtime_ready_signals(monkeypatch, tmp_path: Path)
     assert inventory["capabilities"]["features"]["apply_intel_summary"] is False
     phowhisper_item = next(item for item in inventory["items"] if item["model_id"] == "phowhisper")
     assert phowhisper_item["offline_ready"] is False
+
+
+def test_phowhisper_runtime_ready_accepts_bin_only_weights(tmp_path: Path, monkeypatch):
+    model_dir = tmp_path / "phowhisper"
+    model_dir.mkdir(parents=True, exist_ok=True)
+    for filename in ("config.json", "preprocessor_config.json", "tokenizer.json", "pytorch_model.bin"):
+        (model_dir / filename).write_text("x", encoding="utf-8")
+
+    monkeypatch.setattr(PhoWhisperAdapter, "MODEL_PATHS", [model_dir])
+
+    assert PhoWhisperAdapter.runtime_ready() is True
