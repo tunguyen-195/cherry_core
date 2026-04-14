@@ -68,6 +68,8 @@ function renderModelStatus(items) {
 }
 
 function applyCapabilityLocks(capabilities) {
+  toggleOption("asrEngine", "phowhisper", capabilities.asr_engines?.phowhisper);
+  toggleOption("asrEngine", "whisper-v2", capabilities.asr_engines?.["whisper-v2"]);
   toggleOption("asrEngine", "whisperx", capabilities.asr_engines?.whisperx);
   toggleOption("device", "cuda", capabilities.devices?.cuda);
   toggleOption("speakerMode", "speechbrain", capabilities.speaker_modes?.speechbrain);
@@ -131,15 +133,30 @@ function bindForm() {
     event.preventDefault();
     clearError();
 
+    if (!appState.inventory) {
+      await loadModelInventory();
+    }
+
     const fileInput = document.getElementById("audioFile");
     if (!fileInput.files.length) {
       setError("Cần chọn file audio trước khi chạy.");
       return;
     }
 
+    const asrEngine = document.getElementById("asrEngine");
+    const selectedAsr = [...asrEngine.options].find((item) => item.value === asrEngine.value);
+    if (selectedAsr?.disabled) {
+      const fallbackAsr = [...asrEngine.options].find((item) => !item.disabled);
+      if (!fallbackAsr) {
+        setError("Không có ASR engine offline nào đang sẵn sàng.");
+        return;
+      }
+      asrEngine.value = fallbackAsr.value;
+    }
+
     const formData = new FormData();
     formData.append("file", fileInput.files[0]);
-    formData.append("asr_engine", document.getElementById("asrEngine").value);
+    formData.append("asr_engine", asrEngine.value);
     formData.append("analysis_scenario", document.getElementById("analysisScenario").value);
     formData.append("apply_vad", checkboxValue("applyVad"));
     formData.append("apply_hallucination_filter", checkboxValue("applyHallucinationFilter"));
